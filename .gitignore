@@ -1,0 +1,25 @@
+# Keil生成文件
+*.uvgui.*
+*.uvguix.*
+*.build_log.htm
+*.iex
+*.lst
+*.map
+*.obj
+*.d
+*.axf
+*.crf
+*.htm
+*.dep
+*.lnp
+
+# 编译输出
+/Output/
+/List/
+/Obj/
+/DEBUG/
+/RELEASE/
+
+# 临时文件
+*.tmp
+*.bak
