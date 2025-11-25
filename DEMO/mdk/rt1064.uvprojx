@@ -54,7 +54,7 @@
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
-          <BrowseInformation>1</BrowseInformation>
+          <BrowseInformation>0</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -412,7 +412,17 @@
             <File>
               <FileName>data_processing.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\data_processing.c</FilePath>
+              <FilePath>..\code\data_processing.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\pid.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -432,7 +442,17 @@
             <File>
               <FileName>data_processing.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\data_processing.h</FilePath>
+              <FilePath>..\code\data_processing.h</FilePath>
+            </File>
+            <File>
+              <FileName>motor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\motor.h</FilePath>
+            </File>
+            <File>
+              <FileName>pid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\pid.h</FilePath>
             </File>
           </Files>
         </Group>

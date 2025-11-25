@@ -17,7 +17,7 @@ extern int16 encoder_data_1;
 extern int16 encoder_data_2;
 extern int16 encoder_data_3; 
 extern int16 encoder_data_4;
-extern uint16_t adc_buffer[ADC_CHANNEL_NUMBER];
+extern uint16_t adc_buffer[4];
 extern float adc_error;
 
 // 声明全局变量（在data_processing.c中定义）

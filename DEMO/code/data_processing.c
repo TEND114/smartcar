@@ -1,6 +1,5 @@
 #include "zf_common_headfile.h"
 #include "my_common.h"
-#include "data_processing.h"
 
 // 声明外部变量
 extern int16 encoder_data_1;
@@ -8,18 +7,20 @@ extern int16 encoder_data_2;
 extern int16 encoder_data_3;
 extern int16 encoder_data_4;
 extern uint16_t adc_buffer[ADC_CHANNEL_NUMBER];
-// 移除了未使用的 adc_error
 
 // 全局变量定义
 float adc_error_filtered = 0;
 float encoder_speed_left = 0;
 float encoder_speed_right = 0;
 
+float left_normalized = 0;
+float right_normalized = 0;
+
 // 滤波器实例定义
 moving_average_filter_t adc_filter[ADC_CHANNEL_NUMBER];
 
 //-------------------------------------------------------------------------------------------------------------------
-// 函数简介     数据处理初始化
+// 函数简介     ADC数据窗口处理初始化
 // 参数说明     无
 // 返回参数     无
 //-------------------------------------------------------------------------------------------------------------------
@@ -87,38 +88,13 @@ static void normalize_adc_values(uint16_t left_val, uint16_t right_val, float* l
 //-------------------------------------------------------------------------------------------------------------------
 void process_adc_data(void)
 {
-    // 1. 先滤波
+    // 1. 滤波
     uint16_t adc_left_filtered = moving_average_filter(&adc_filter[0], adc_buffer[0]);
     uint16_t adc_right_filtered = moving_average_filter(&adc_filter[3], adc_buffer[3]);
     
-    // 2. 再显式归一化
-    float left_normalized, right_normalized;
+    // 2. 归一化
     normalize_adc_values(adc_left_filtered, adc_right_filtered, &left_normalized, &right_normalized);
     
-    // 3. 最后基于归一化值计算误差
-    adc_error_filtered = left_normalized - right_normalized;
-}
-
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     编码器数据处理
-// 参数说明     无
-// 返回参数     无
-//-------------------------------------------------------------------------------------------------------------------
-void process_encoder_data(void)
-{
-    encoder_speed_left = (float)encoder_data_1;
-    encoder_speed_right = (float)encoder_data_2;
-}
-
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     获取归一化值（用于调试）
-// 参数说明     left_norm: 左电感归一化值（输出参数）
-//             right_norm: 右电感归一化值（输出参数）
-// 返回参数     无
-//-------------------------------------------------------------------------------------------------------------------
-void get_normalized_values(float* left_norm, float* right_norm)
-{
-    uint16_t adc_left_filtered = moving_average_filter(&adc_filter[0], adc_buffer[0]);
-    uint16_t adc_right_filtered = moving_average_filter(&adc_filter[3], adc_buffer[3]);
-    normalize_adc_values(adc_left_filtered, adc_right_filtered, left_norm, right_norm);
+    // 3. 基于归一化值计算误差
+    adc_error_filtered = left_normalized - right_normalized + 0.1;
 }

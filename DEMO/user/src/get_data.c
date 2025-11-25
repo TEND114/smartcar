@@ -67,7 +67,7 @@ void get_data()
 	get_encoder();
 	get_adc();
 	
-	process_encoder_data(); // 转换为速度值
+	//process_encoder_data(); // 转换为速度值
   process_adc_data();     // 滤波 + 归一化 + 误差计算
 	
 }

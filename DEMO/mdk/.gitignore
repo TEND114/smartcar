@@ -1,0 +1,36 @@
+cat > .gitignore << 'EOF'
+# Keil uVision
+Objects/
+Listings/
+*.uvgui.*
+*.bak
+*.crf
+*.d
+*.dep
+*.iex
+*.lnp
+*.map
+*.mpf
+*.mpj
+*.ocr
+*.opt
+*.pbi
+*.pbd
+*.pbw
+*.sct
+*.tra
+
+# Build output
+*.axf
+*.elf
+*.hex
+*.bin
+*.o
+*.d
+
+# User specific files
+*.uvguix.*
+
+# IDE
+.vscode/
+EOF

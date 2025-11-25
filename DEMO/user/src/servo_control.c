@@ -7,6 +7,11 @@ float servo_motor_angle = SERVO_MOTOR_M;
 float kp = 0.008;
 extern float adc_error_filtered;
 
+extern float left_normalized;
+extern float right_normalized;
+
+extern PID servo_pid;
+
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     设置舵机PWM
 // 参数说明     无
@@ -17,8 +22,11 @@ extern float adc_error_filtered;
 //-------------------------------------------------------------------------------------------------------------------
 void set_servo_pwm()
 {
-	//根据偏差计算舵机打角
-	servo_motor_angle = SERVO_MOTOR_M - kp * adc_error_filtered;
+	float pid_output = PID_Servo_Control(&servo_pid, adc_error_filtered, 0.0f, 1000.0f);
+	
+    
+    // 计算舵机角度
+  servo_motor_angle = SERVO_MOTOR_M - pid_output;
 	//打角限幅
 	if(servo_motor_angle > SERVO_MOTOR_R_MAX)servo_motor_angle = SERVO_MOTOR_R_MAX;
 	if(servo_motor_angle < SERVO_MOTOR_L_MAX)servo_motor_angle = SERVO_MOTOR_L_MAX;
@@ -27,4 +35,10 @@ void set_servo_pwm()
 	pwm_set_duty(SERVO_MOTOR1_PWM, (uint32)SERVO_MOTOR_DUTY(servo_motor_angle));
 	pwm_set_duty(SERVO_MOTOR2_PWM, (uint32)SERVO_MOTOR_DUTY(servo_motor_angle));
 	pwm_set_duty(SERVO_MOTOR3_PWM, (uint32)SERVO_MOTOR_DUTY(servo_motor_angle));
+}
+
+// 实现对赛道元素的识别和控制舵机的选择
+
+void Servo_Final_Control(){
+	
 }

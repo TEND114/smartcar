@@ -7,6 +7,7 @@
 #define PIT_CH                      (PIT_CH0 )         
 #define PIT_PRIORITY                    (PIT_IRQn)
 #define LED1 (B9)
+#define KEY_EXTI               (GPIO2_Combined_16_31_IRQn)                     // 对应外部中断的中断编号 
 
 //占空比限幅
 #define MAX_PWM_DUTY            (50) 
@@ -58,13 +59,23 @@
 
 #define SERVO_MOTOR_L_MAX           (70 )                                           // 定义主板上舵机活动范围 角度
 #define SERVO_MOTOR_R_MAX           (100)                                           // 定义主板上舵机活动范围 角度
-#define SERVO_MOTOR_M          		  (85)																						// 定义主板上舵机活动中值 角度
+#define SERVO_MOTOR_M          	    (85)		            						// 定义主板上舵机活动中值 角度
 
 #define SERVO_MOTOR_DUTY(x)         ((float)PWM_DUTY_MAX/(1000.0/(float)SERVO_MOTOR_FREQ)*(0.5+(float)(x)/90.0))
+
+
+//定义直道和弯道的电机RPM
+#define STRAIGHT_SPEED_RPM 300
+#define CURVE_SPEED_RPM 200
+#define MIN_CURVE_RPM 100
+#define MAX_SPEED_RPM  400     // 最大转速(RPM)
+
 
 #if (SERVO_MOTOR_FREQ<50 || SERVO_MOTOR_FREQ>300)
     #error "SERVO_MOTOR_FREQ ERROE!"
 #endif
+
+
 
 
 #endif
