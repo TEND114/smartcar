@@ -33,4 +33,5 @@ Listings/
 
 # IDE
 .vscode/
-EOF
+EOF*.uvguix.*
+*.bak

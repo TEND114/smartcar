@@ -1,4 +1,4 @@
-./objects/data_processing.o: data_processing.c \
+./objects/data_processing.o: ..\code\data_processing.c \
   ..\..\libraries\zf_common\zf_common_headfile.h \
   ..\..\libraries\sdk\drives\fsl_common.h \
   ..\..\libraries\sdk\deceive\fsl_device_registers.h \
@@ -89,4 +89,5 @@
   ..\..\libraries\components\sdmmc\common\fsl_sdmmc_spec.h \
   ..\..\libraries\components\sdmmc\sdmmc_config.h \
   ..\..\libraries\sdk\board\clock_config.h ..\user\inc\isr.h \
-  ..\user\inc\my_common.h data_processing.h
+  ..\code\data_processing.h ..\user\inc\my_common.h ..\code\motor.h \
+  ..\code\pid.h

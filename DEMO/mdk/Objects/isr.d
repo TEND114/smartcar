@@ -88,4 +88,6 @@
   ..\..\libraries\sdk\drives\fsl_usdhc.h \
   ..\..\libraries\components\sdmmc\common\fsl_sdmmc_spec.h \
   ..\..\libraries\components\sdmmc\sdmmc_config.h \
-  ..\..\libraries\sdk\board\clock_config.h ..\user\inc\isr.h
+  ..\..\libraries\sdk\board\clock_config.h ..\user\inc\isr.h \
+  ..\code\data_processing.h ..\user\inc\my_common.h ..\code\motor.h \
+  ..\code\pid.h
